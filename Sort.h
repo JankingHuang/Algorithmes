@@ -87,6 +87,47 @@ namespace Sort
     void mergeSort(T arr[], int n){
         __mergeSort(arr, 0, n-1);
     }
+
+    template<typename T>
+    void mergeSortBlowToUp(T arr[], int n){
+        //没有使用数组空间，可以很好的对链表进行排序
+        for( int sz = 1; sz <= n; sz += sz)
+            for(int i = 0; i + sz < n; i += sz + sz)
+                __merge(arr, i, i + sz - 1, min(i + sz + sz -1,n-1));
+    }
+
+    //返回p,使得arr[l, p - 1] < arr[p] ; arr[p + 1, r] > arr[p]
+    template<typename T>
+    int __partition(T arr[], int l, int r){
+        T v = arr[l];
+        int j = l;
+        for(int i = l + 1; i <= r; i++){
+            if(arr[i] < v){
+                swap(arr[j + 1], arr[i]);
+                j++;
+                //swap(arr[++j],arr[i]);
+            }
+        }
+        swap(arr[l], arr[j]);
+        return j;
+    }
+
+    template<typename T>
+    void __quickSort(T arr[], int l, int r){
+        if( l >= r){
+            return;
+        }
+        int p = __partition(arr, l, r);
+        __quickSort(arr, l, p - 1);
+        __quickSort(arr, p + 1, r);
+    }
+    
+    template<typename T>
+    void quickSort(T arr[], int n){
+        __quickSort(arr,0, n - 1);
+    }
+    
+
 } // namespace Sort
 
 #endif
