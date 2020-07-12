@@ -99,6 +99,7 @@ namespace Sort
     //返回p,使得arr[l, p - 1] < arr[p] ; arr[p + 1, r] > arr[p]
     template<typename T>
     int __partition(T arr[], int l, int r){
+        swap(arr[l], arr[rand() % (r - l +1) + l]);//选择随机标定
         T v = arr[l];
         int j = l;
         for(int i = l + 1; i <= r; i++){
