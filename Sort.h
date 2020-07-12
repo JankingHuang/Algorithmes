@@ -78,7 +78,8 @@ namespace Sort
         int mid = (l + r) / 2;
         __mergeSort(arr, l, mid);
         __mergeSort(arr, mid + 1, r);
-        __merge(arr, l, mid, r);
+        if( arr[mid] > arr[mid+1])
+            __merge(arr, l, mid, r);
     }
 
     template<typename T>
