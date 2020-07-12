@@ -73,6 +73,7 @@ namespace Sort
     //进行划分
     template<typename T> //对arr[l,r]范围
     void __mergeSort(T arr[], int l, int r){
+        //当数据趋于有序时，调用另一种算法进行排序。如插入排序
         if(l >= r)
             return;
         int mid = (l + r) / 2;
